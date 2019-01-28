@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conan O'Brien Italian Phrase Generator</title>
+</head>
+<script type="text/javascript">
+
+  window.onload = function(e) {
+
+    // load conna image
+    var conanImage = new Image(); 
+    conanImage.src = 'coco.png';
+    init();
+
+    canvas = document.getElementById("conan");
+    ctx = canvas.getContext("2d");    
+
+    // Make sure the image is loaded first otherwise nothing will draw.
+    conanImage.onload = function(){
+      ctx.drawImage(conanImage, -200, 0);        
+      document.getElementById("conan").classList.add("comein")
+    }    
+
+
+  }
+
+  function init() {
+    scrollCanvasToView()
+  }
+
+  function scrollCanvasToView() {
+    console.log("IMPLEMENT THE SCROLL IN");
+  }
+
+  function handleClick(e) {
+    var randomNum = getRandomNumberFromOneTo(4);
+    var audioElem = document.getElementById(String(randomNum));
+    var text = audioElem.getAttribute("data-text");
+    var toInsert = document.getElementById("insertion");
+
+    // Play the sound
+    audioElem.play();
+
+    // Move the mouth
+
+    // switch the text scene
+    toInsert.innerHTML = text;
+
+  }
+
+  function getRandomNumberFromOneTo(x) {
+    return Math.floor(Math.random() * x) + 1    
+  }
+
+
+</script>
+<style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    color: #5c5c5c;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    background-color: #dedede;
+    height: 700px;
+    font-family: Helvetica;
+    font-size: 80px;
+    overflow: hidden;
+  }
+
+  h4 { font-size: 0.50em; font-weight: 500; }
+  h3 { 
+    font-size: 0.60em; 
+    font-weight: 900;
+  }
+  h2 { font-size: 0.75em; }
+  h1 { font-size: 1em; }
+  p { 
+    font-size: 0.25em; 
+    margin-top: 20px;
+    margin-bottom: 20px;    
+  }
+
+  #stuff {
+    grid-column: 8 / 12;
+    grid-row: 2;    
+  }
+
+  #conan {
+    position: relative;
+    top: 607px;
+    grid-row: 2;
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
+
+  #conan.comein {
+    top: 0px;
+    transition: top 1s;
+  }
+
+  button {
+    padding: 15px;
+    font-size: 0.2em;
+    color: white;
+    background: #5c5c5c;
+    border-radius: 10px;    
+  }
+
+
+
+</style>
+<body>
+  <audio id="1" data-text="Good morning">
+    <source
+      src="./sounds/goodmorning.mp3" 
+      type="audio/mp3" />
+  </audio>
+
+  <audio id="2" data-text="I love Italy">
+    <source
+      src="./sounds/iloveitaly.mp3" 
+      type="audio/mp3" />
+  </audio>
+
+  <audio id="3" data-text="Jordan is not Italian">
+    <source
+      src="./sounds/jordannotitalian.mp3" 
+      type="audio/mp3" />
+  </audio>
+
+  <audio id="4" data-text="Sphaghetti">
+    <source
+      src="./sounds/sphaghetti.mp3" 
+      type="audio/mp3" />
+  </audio>
+
+  <canvas id="conan" width="600" height="607">
+
+  </canvas>
+  <section id="stuff">
+    <h4>CONAN O'BRIEN:</h3>
+    <h3>ITALIAN QUOTES & PHRASES</h4>
+    <p>
+      CONAN CEO Conan O'Brien is a real Italian speaker with a unique and but authentic Italian accent. Click the button below to hear Conan's beautiful Italian language.
+    </p>
+    <p id='insertion'></p>
+    <button onclick="handleClick()">EXPERIENCE TRUE ITALIAN</button>
+  </section>
+</body>
+</html>
